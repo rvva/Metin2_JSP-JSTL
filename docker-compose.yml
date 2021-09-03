@@ -3,6 +3,7 @@ services:
   db:
     image: mysql:5.6
     container_name: cloudmt2-db
+    restart: always
     volumes:
       - ./db/mysql:/var/lib/mysql
       # grants select, insert to webmt2 user
@@ -16,6 +17,7 @@ services:
     depends_on:
       - db
     container_name: cloudmt2-dbadmin
+    restart: always
     image: phpmyadmin/phpmyadmin
     ports:
       - '8008:80'
@@ -23,14 +25,14 @@ services:
       - .env
 
   web:
-    depends_on: 
+    depends_on:
       - db
-    image: tomcat:8.5.35
+    build: .
+    image: rvva/tomcat8.5.69
+    restart: always
     container_name: cloudmt2-web
-    volumes:
-      - ./CloudMT2/dist/CloudMT2.war:/usr/local/tomcat/webapps/CloudMT2.war
     ports:
-      - "8080:8080"
+      - "80:8080"
 
 networks:
     cloudmt2-network:
