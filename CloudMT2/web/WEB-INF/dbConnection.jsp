@@ -5,4 +5,4 @@
 --%>
 
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<sql:setDataSource var="db" scope="request" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://80.211.193.148:3306/?zeroDateTimeBehavior=convertToNull" user="root" password="NIE_PODAM!" />
+<sql:setDataSource var="db" scope="request" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://cloudmt2-db:3306/?zeroDateTimeBehavior=CONVERT_TO_NULL" user="mt2web" password="B!e0%ve&Up!ekm*zRMygPn%Wm" />

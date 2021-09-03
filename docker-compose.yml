@@ -1,0 +1,40 @@
+version: '3.7'
+services:
+  db:
+    image: mysql:5.6
+    container_name: cloudmt2-db
+    restart: always
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+      # grants select, insert to webmt2 user
+      - ./db/mt2web_grant.sql:/docker-entrypoint-initdb.d/mt2web_grant.sql
+    env_file:
+      - .env
+    ports:
+      - 3306:3306
+  
+  phpmyadmin:
+    depends_on:
+      - db
+    container_name: cloudmt2-dbadmin
+    restart: always
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8008:80'
+    env_file:
+      - .env
+
+  web:
+    depends_on:
+      - db
+    build: .
+    image: rvva/tomcat8.5.69
+    restart: always
+    container_name: cloudmt2-web
+    ports:
+      - "80:8080"
+
+networks:
+    cloudmt2-network:
+        name: cloudmt2-network
+        external: true
