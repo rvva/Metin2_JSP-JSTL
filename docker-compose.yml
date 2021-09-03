@@ -1,0 +1,26 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.6
+    container_name: cloudmt2-db
+    volumes:
+      - ./db/mysql:/var/lib/mysql
+    env_file:
+      - .env
+    ports:
+      - 3306:3306
+  
+  phpmyadmin:
+    depends_on:
+    container_name: cloudmt2-dbadmin
+      - db
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8008:443'
+    env_file:
+      - .env
+
+networks:
+    localhost:
+        name: cloudmt2-network
+        external: true
