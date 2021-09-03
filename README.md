@@ -32,7 +32,7 @@ It can be remote (edit *dbConnection.jsp*) or local (paste your mysql files into
 In this case you need to setup Apache Tomcat and MySQL server in traditional way. 
 
 ## Production use - SSL with Let's Encrypt
-For production use with both docker and FreeBSD use a reverse proxy - for example Caddy reverse proxy.
+For production with both docker and FreeBSD use a reverse proxy - for example Caddy reverse proxy.
 If you want to use my Caddy recommendation, be sure to change the web application port in docker-compose.yml from 80 to another. Caddy uses ports 80 and 443.
 
 
