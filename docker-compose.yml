@@ -10,8 +10,6 @@ services:
       - ./db/mt2web_grant.sql:/docker-entrypoint-initdb.d/mt2web_grant.sql
     env_file:
       - .env
-    ports:
-      - 3306:3306
   
   phpmyadmin:
     depends_on:
